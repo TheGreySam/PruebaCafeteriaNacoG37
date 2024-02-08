@@ -22,5 +22,11 @@ describe("Operaciones CRUD de cafes", () => {
     const response = await request(server).post('/cafes').send(cafes)
     expect(response.status).toBe(201)
   })
+  // PUT /cafes
+  it("responds 400 if you updatre sending an id in the parameters that is different than the id inside the payload", async() => {
+    const iddistinto = 'id-distinto'
+    const response = (await request(server).put(`/cafes/${iddistinto}`).send(cafes))
+    expect(response.status).toBe(400)
+  })
 
 });
