@@ -11,5 +11,11 @@ describe("Operaciones CRUD de cafes", () => {
     expect(response.status).toBe(200);
     expect(Array.isArray(response.body)).toBe(true)
   });
+  // DELETE /cafes/:id
+  it("responds 400 if cafe does not exists and there is no token", async () => {
+    const idfalso = 'id-no-existente'
+    const response = await request(server).delete(`/cafes/${idfalso}`)
+    expect(response.status).toBe(400)
+  })
 
 });
